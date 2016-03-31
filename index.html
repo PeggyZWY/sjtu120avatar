@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>document</title>
+    <style type="text/css">
+        html, body {
+            background-color: white;
+            position: relative;
+
+            width: 100%;
+            height: 100%;
+        }
+        #banner {
+            background-image: url(sjtubanner.png);
+            background-size:547px 548px;
+            background-repeat:no-repeat;
+            position: relative;
+            width:547px;
+            height: 548px;
+        }
+        #avatar {
+            background-size:316px 316px;
+            border-radius: 316px;
+            width: 316px;
+            height: 316px;
+            position: absolute;
+            /* z-index: 1; */
+            left: 114px;
+            top: 115px;
+        }
+    </style>
+</head>
+<body>
+    <div id="banner"></div>
+    <img id="avatar" src="" />
+    <p><input id="upload" type="file" name="file" /></p>
+    <button id="blue">改为蓝色校徽</button> 
+    <button id="red">改为红色校徽</button> 
+    <button id="default">恢复默认颜色</button> 
+    <br>
+    <p>暂时未提供一键保存功能，请网页截图后自行裁剪。</p>
+    <!-- <p><input id="save" type="button" value="保存图片" name="save"></p> -->
+
+<!--     <script type="text/javascript"
+    src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script type="text/javascript"
+    src="//cdn.bootcss.com/html2canvas/0.5.0-beta4/html2canvas.min.js"></script> -->
+    <!-- <script src="http://192.168.1.103:9025/target/target-script-min.js#anonymous"></script> -->
+
+    <script type="text/javascript">
+        window.onload = function() {
+            var bannerDiv = document.getElementById("banner");
+
+            var uploadBtn = document.getElementById("upload");
+            uploadBtn.addEventListener("change", function(event) {
+                var imgSrc = document.getElementById("upload").files[0];
+                var src = window.URL.createObjectURL(imgSrc);
+                document.getElementById("avatar").src = src;
+            }, false);
+
+            var blueBtn = document.getElementById("blue");
+            blueBtn.addEventListener("click", function(event) {
+                bannerDiv.style.backgroundImage = "url(sjtubanner_blue.png)";
+            });
+
+            var blueBtn = document.getElementById("red");
+            blueBtn.addEventListener("click", function(event) {
+                bannerDiv.style.backgroundImage = "url(sjtubanner_red.png)";
+            });
+
+            var blueBtn = document.getElementById("default");
+            blueBtn.addEventListener("click", function(event) {
+                bannerDiv.style.backgroundImage = "url(sjtubanner.png)";
+            });
+            // $("#save").on("click", function(event) {
+            //     // event.preventDefault(); 
+ 
+            //     html2canvas($("#banner"), {
+            //     alert("22");   
+            //         onrendered: function(canvas) { 
+            //             // canvas.id = "mycanvas"; 
+            //             alert("22"); 
+            //             //document.body.appendChild(canvas);  
+            //             //生成base64图片数据
+            //             alert("imgUrl = canvas.toDataURL();");
+            //             imgUrl = canvas.toDataURL();
+            //             // if (!imgUrl) alert('2');
+            //             alert(typeof imgUrl);
+            //             // var newImg = document.createElement("img"); 
+            //             // alert(dataUrl);                       
+            //             // newImg.src =  dataUrl;  
+            //             // document.body.appendChild(newImg);  
+            //         }  
+            //     });  
+            // });                
+        }
+    </script>
+</body>
+</html>
