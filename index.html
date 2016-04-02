@@ -34,11 +34,22 @@
 <body>
     <div id="banner"></div>
     <img id="avatar" src="" />
+    <br><br>
+    <form>
     <p><input id="upload" type="file" name="file" /></p>
-    <button id="blue">改为蓝色校徽</button> 
-    <button id="red">改为红色校徽</button> 
-    <button id="default">恢复默认颜色</button> 
-    <br>
+        请选择校徽颜色：
+<!--         <button id="blue">改为蓝色校徽</button> 
+        <button id="red">改为红色校徽</button> 
+        <button id="default">恢复默认颜色</button> -->
+        <select id="bannerColor">
+            <option value="blue">蓝色</option>
+            <option value="red">红色</option>
+            <option value="gold">金色</option>
+            <option value="black">黑色</option>
+            <option value="green">绿色</option>
+            <option value="grey">灰色</option>
+        </select> 
+    </form>
     <p>暂时未提供一键保存功能，请网页截图后自行裁剪。</p>
     <!-- <p><input id="save" type="button" value="保存图片" name="save"></p> -->
 
@@ -51,28 +62,22 @@
     <script type="text/javascript">
         window.onload = function() {
             var bannerDiv = document.getElementById("banner");
-
+            bannerDiv.style.backgroundImage = "url(sjtubanner_blue.png)"; 
             var uploadBtn = document.getElementById("upload");
+            var bannerColorList = document.getElementById("bannerColor");
+
             uploadBtn.addEventListener("change", function(event) {
                 var imgSrc = document.getElementById("upload").files[0];
                 var src = window.URL.createObjectURL(imgSrc);
                 document.getElementById("avatar").src = src;
             }, false);
 
-            var blueBtn = document.getElementById("blue");
-            blueBtn.addEventListener("click", function(event) {
-                bannerDiv.style.backgroundImage = "url(sjtubanner_blue.png)";
-            });
+            bannerColorList.addEventListener("change", function(event) {
+                var i = bannerColorList.selectedIndex;
+                var color = bannerColorList.options[i].value; 
+                bannerDiv.style.backgroundImage = "url(sjtubanner_" + color + ".png)"; 
+            }, false);
 
-            var redBtn = document.getElementById("red");
-            redBtn.addEventListener("click", function(event) {
-                bannerDiv.style.backgroundImage = "url(sjtubanner_red.png)";
-            });
-
-            var defaultBtn = document.getElementById("default");
-            defaultBtn.addEventListener("click", function(event) {
-                bannerDiv.style.backgroundImage = "url(sjtubanner.png)";
-            });
             // $("#save").on("click", function(event) {
             //     // event.preventDefault(); 
  
